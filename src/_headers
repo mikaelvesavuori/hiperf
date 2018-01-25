@@ -1,0 +1,9 @@
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  X-XSS-Protection: 1; mode=block
+  Access-Control-Allow-Origin: *
+  X-UA-Compatible: IE=edge
+  Cache-Control: max-age=2592000, must-revalidate, public
+  Vary: Accept-Encoding
+  Referrer-Policy: no-referrer

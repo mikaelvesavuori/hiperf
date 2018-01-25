@@ -1,0 +1,38 @@
+{
+	"plugins": [
+		[
+			"lodash",
+			"syntax-dynamic-import",
+			"babel-plugin-styled-components",
+			{
+				"displayName": true,
+				"preprocess": true
+			}
+		]
+	],
+	"presets": [
+		[
+			"env",
+			{
+				"targets": {
+					"chrome": 50,
+					"browsers": [
+						"last 2 versions",
+						"> 5%",
+						"ie 11"
+					]
+				},
+				"production": {
+					"presets": [
+						"react-optimize"
+					]
+				},
+				"modules": false,
+				"loose": true
+			}
+		],
+		"react",
+		"stage-0",
+		"flow"
+	]
+}

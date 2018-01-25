@@ -1,0 +1,100 @@
+/* Vanity styles for example content */
+
+html * {
+	box-sizing: border-box;
+}
+
+@font-face {
+	font-family: "LibreFranklin-Regular";
+	src: local("LibreFranklin-Regular"), url("../fonts/LibreFranklin-Regular.woff2") format("woff2"), url("../fonts/LibreFranklin-Regular.woff") format("woff");
+	font-display: fallback;
+	font-weight: normal;
+	font-style: normal;
+}
+
+body {
+	/* Set 1em to be equivalent to 16px */
+	font-size: 16px;
+	margin-top: 2em;
+}
+
+@media screen and (max-width: 568px) {
+	body {
+		margin: 1em;
+	}
+}
+
+h1,
+p {
+	font-family: "LibreFranklin-Regular";
+	max-width: 600px;
+	margin: 0 auto;
+}
+
+h1 {
+	font-size: 3em;
+	/* Don't use leading zeroes */
+	padding-bottom: .25em;
+}
+
+p {
+	font-size: 1em;
+	/* Always use valueless line-height */
+	line-height: 1.4;
+}
+
+a {
+	color: rgba(130, 0, 250, 1);
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+a:visited {
+	color: rgba(130, 0, 150, 1);
+}
+
+code {
+	/* Prefer RGBA colors to HEX */
+	color: rgba(20, 20, 20, 1);
+	background-color: rgba(50, 50, 255, 0.1);
+	padding: 0 .3em;
+}
+
+section {
+	padding-bottom: 2em;
+}
+
+.image {
+	width: 100%;
+	padding: 2em;
+}
+
+img {
+	width: 100%;
+	max-width: 900px;
+	display: block;
+	margin: 0 auto;
+	margin-bottom: 1em;
+}
+
+.image-caption {
+	font-size: .8em;
+	text-align: center;
+}
+
+.lazyload,
+.lazyloading {
+	opacity: 0;
+	transform: translateX(-100%);
+}
+
+.lazyloaded {
+	opacity: 1;
+	/* Never transition more properties than necessary */
+	transition: transform .5s ease-out;
+	/* Use GPU acceleration for transforms */
+	transform: translateX(0);
+	will-change: transform;
+}
