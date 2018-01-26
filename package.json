@@ -22,6 +22,7 @@
 		"extract-text-webpack-plugin": "latest",
 		"file-loader": "latest",
 		"html-webpack-plugin": "latest",
+		"husky": "^0.14.3",
 		"imports-loader": "latest",
 		"lazysizes": "latest",
 		"lighthouse": "latest",
@@ -61,7 +62,8 @@
 		"build": "webpack --config webpack.prod.js --display-error-details",
 		"postbuild": "yarn run size",
 		"test": "echo \"Testing\"",
-		"commit": "yarn test",
+		"precommit": "yarn test && yarn version",
+		"prepush": "yarn test && yarn version",
 		"version": "yarn build && git add .",
 		"postversion": "git push && git push --tags"
 	},
