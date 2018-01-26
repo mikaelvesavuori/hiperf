@@ -60,7 +60,7 @@
 		"prebuild": "yarn run clean",
 		"build": "webpack --config webpack.prod.js --display-error-details",
 		"postbuild": "yarn run size",
-		"test": "lighthouse --view $npm_package_config_siteurl"
+		"test": "lighthouse --view $npm_package_config_siteurl && sitespeed.io $npm_package_config_siteurl"
 	},
 	"size-limit": [
 		{
