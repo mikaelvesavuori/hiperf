@@ -1,7 +1,7 @@
 {
 	"name": "hiperf",
 	"description": "High-performance web development architecture",
-	"version": "0.0.4",
+	"version": "0.0.5",
 	"main": "index.js",
 	"author": "Mikael Vesavuori",
 	"license": "MIT",
@@ -62,10 +62,8 @@
 		"build": "webpack --config webpack.prod.js --display-error-details",
 		"postbuild": "yarn run size",
 		"test": "echo \"Testing\"",
-		"precommit": "yarn build && yarn test",
-		"prepush": "npm version patch",
-		"version": "yarn build && git add .",
-		"postversion": "git push && git push --tags "
+		"precommit": "yarn test",
+		"prepush": "npm version patch"
 	},
 	"size-limit": [
 		{
