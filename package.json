@@ -61,7 +61,7 @@
 		"build": "webpack --config webpack.prod.js --display-error-details",
 		"postbuild": "yarn run size",
 		"test": "echo \"Testing\"",
-		"preversion": "yarn test",
+		"precommit": "yarn test",
 		"version": "yarn build && git add .",
 		"postversion": "git push && git push --tags"
 	},
