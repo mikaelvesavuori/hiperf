@@ -3,6 +3,7 @@ const path = require("path");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ScriptExtHtmlWebpackPlugin = require("script-ext-html-webpack-plugin");
+const AutoDllPlugin = require("autodll-webpack-plugin");
 
 const srcDir = path.resolve(__dirname, "src");
 const distDir = path.resolve(__dirname, "dist");
@@ -108,6 +109,7 @@ module.exports = {
 		}),
 		new HtmlWebpackPlugin({
 			template: path.join(srcDir, "index-example.html"),
+			inject: true,
 			path: distDir,
 			filename: "index.html",
 			//excludeChunks: ["base"],
@@ -118,8 +120,27 @@ module.exports = {
 				removeRedundantAttributes: true
 			}
 		}),
+		/*
 		new ScriptExtHtmlWebpackPlugin({
 			defaultAttribute: "defer"
+		}),
+		*/
+		new AutoDllPlugin({
+			inject: true,
+			debug: true,
+			filename: '[name]_[hash].js',
+			path: './dll',
+			//filename: "[name].js",
+			entry: {
+				vendor: [
+					"path"
+				]
+			}
 		})
-	]
+	],
+	performance: {
+		maxEntrypointSize: 250000,
+		maxAssetSize: 250000,
+		hints: "warning"
+	}
 };

@@ -6,6 +6,7 @@
 	"author": "Mikael Vesavuori",
 	"license": "MIT",
 	"devDependencies": {
+		"autodll-webpack-plugin": "^0.3.8",
 		"babel-core": "latest",
 		"babel-eslint": "latest",
 		"babel-loader": "latest",
@@ -23,6 +24,7 @@
 		"html-webpack-plugin": "latest",
 		"imports-loader": "latest",
 		"lazysizes": "latest",
+		"lighthouse": "latest",
 		"lodash-webpack-plugin": "latest",
 		"node-sass": "latest",
 		"optimize-css-assets-webpack-plugin": "latest",
@@ -34,6 +36,8 @@
 		"precss": "latest",
 		"raw-loader": "latest",
 		"script-ext-html-webpack-plugin": "latest",
+		"sitespeed.io": "latest",
+		"size-limit": "latest",
 		"style-loader": "latest",
 		"sw-precache-webpack-plugin": "latest",
 		"sw-toolbox": "latest",
@@ -44,13 +48,25 @@
 		"webpack-dev-server": "latest",
 		"webpack-merge": "latest"
 	},
+	"config": {
+		"siteurl": "https://wwww.google.com"
+	},
 	"scripts": {
 		"start": "test && yarn run dev",
+		"size": "size-limit",
 		"dev": "webpack-dev-server --open --config webpack.dev.js --host 0.0.0.0 --port 3000",
 		"clean": "rm -rf dist && mkdir dist",
 		"copy": "cp -R src/assets dist/ && cp src/* dist/",
 		"prebuild": "yarn run clean",
 		"build": "webpack --config webpack.prod.js --display-error-details",
-		"test": "echo \"You should test your code\""
-	}
+		"postbuild": "yarn run size",
+		"test": "lighthouse --view $npm_package_config_siteurl"
+	},
+	"size-limit": [
+		{
+			"limit": "50 KB",
+			"webpack": false,
+			"path": "dist/app.*.js"
+		}
+	]
 }

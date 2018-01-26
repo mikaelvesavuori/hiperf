@@ -99,5 +99,8 @@ module.exports = merge(common, {
 			minRatio: 0.8
 		})
 		//new BundleAnalyzerPlugin()
-	]
+	],
+	performance: {
+		hints: "error"
+	}
 });
