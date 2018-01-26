@@ -54,14 +54,14 @@
 	},
 	"scripts": {
 		"start": "test && yarn run dev",
-		"size": "size-limit",
 		"dev": "webpack-dev-server --open --config webpack.dev.js --host 0.0.0.0 --port 3000",
 		"clean": "rm -rf dist && mkdir dist",
 		"copy": "cp -R src/assets dist/ && cp src/* dist/",
 		"prebuild": "yarn run clean",
 		"build": "webpack --config webpack.prod.js --display-error-details",
 		"postbuild": "yarn run size",
-		"test": "echo \"Testing\"",
+		"test": "size-limit",
+		"test:url": "lighthouse --view $npm_package_config_siteurl && sitespeed.io $npm_package_config_siteurl",
 		"precommit": "yarn test",
 		"prepush": "npm version patch"
 	},
