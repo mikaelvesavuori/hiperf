@@ -1,6 +1,7 @@
 const webpack = require("webpack");
 const path = require("path");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ScriptExtHtmlWebpackPlugin = require("script-ext-html-webpack-plugin");
 const AutoDllPlugin = require("autodll-webpack-plugin");
@@ -11,15 +12,16 @@ const distDir = path.resolve(__dirname, "dist");
 module.exports = {
 	watch: false,
 	context: srcDir,
-	entry: {
+	entry: [
 		// Examples of what might make sense to split into bundles
 		//framework: ["react", "react-router-dom", "react-loadable", "preact-compat"],
 		//common: ["styled-components", "marked"],
 
 		// Your main entry point, usually a .js or .jsx file
-		app: ["./index-example.html"],
-		styles: "./assets/styles/main.scss"
-	},
+		//app: ["./index-example.html"],
+		//styles: "./assets/styles/main.scss"
+		"./main.js"
+	],
 	output: {
 		path: distDir,
 		filename: "[name].[chunkhash].js",
@@ -40,6 +42,7 @@ module.exports = {
 	},
 	module: {
 		rules: [
+			/*
 			{
 				enforce: "pre",
 				test: /\.(js|jsx)$/,
@@ -50,6 +53,7 @@ module.exports = {
 				},
 				exclude: /node_modules/
 			},
+			*/
 			{
 				test: /\.(js|jsx)$/,
 				use: [
@@ -73,10 +77,10 @@ module.exports = {
 				}
 			},
 			{
-				test: /\.(jpg|gif|png|svg)$/,
-				loader: "url-loader",
+				test: /\.(jpeg|jpg|png|svg|gif)$/,
+				loader: "url-loader", // Use file-loader if you want to deal with the images; url-loader is because we later copy all images and then optimize them through a separate imageoptim pass
 				options: {
-					limit: 1, // Make sure we don't inline any of the content, but rather copy files instead
+					limit: 0, // Make sure we don't inline any of the content, but rather copy files instead
 				}
 			},
 			{
@@ -103,12 +107,16 @@ module.exports = {
 		]
 	},
 	plugins: [
+		new CopyWebpackPlugin([{
+			from: path.resolve(__dirname, "src/assets/images/"),
+			to: path.resolve(__dirname, "dist/assets/images/")
+		}]),
 		new ExtractTextPlugin({
 			filename: "assets/styles/[name].css",
 			allChunks: true
 		}),
 		new HtmlWebpackPlugin({
-			template: path.join(srcDir, "index-example.html"),
+			template: path.join(srcDir, "index.html"),
 			inject: true,
 			path: distDir,
 			filename: "index.html",
@@ -125,11 +133,12 @@ module.exports = {
 			defaultAttribute: "defer"
 		}),
 		*/
+		/*
 		new AutoDllPlugin({
 			inject: true,
 			debug: true,
-			filename: '[name]_[hash].js',
-			path: './dll',
+			filename: "[name]_[hash].js",
+			path: "./dll",
 			//filename: "[name].js",
 			entry: {
 				vendor: [
@@ -137,6 +146,7 @@ module.exports = {
 				]
 			}
 		})
+		*/
 	],
 	performance: {
 		maxEntrypointSize: 250000,

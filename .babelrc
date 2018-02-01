@@ -22,17 +22,9 @@
 						"ie 11"
 					]
 				},
-				"production": {
-					"presets": [
-						"react-optimize"
-					]
-				},
 				"modules": false,
 				"loose": true
 			}
 		],
-		"react",
-		"stage-0",
-		"flow"
 	]
 }

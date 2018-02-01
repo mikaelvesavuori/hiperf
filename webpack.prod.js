@@ -2,7 +2,7 @@ const webpack = require("webpack");
 const merge = require("webpack-merge");
 const common = require("./webpack.common.js");
 const path = require("path");
-const SWPrecacheWebpackPlugin = require("sw-precache-webpack-plugin");
+const WorkboxPlugin = require("workbox-webpack-plugin");
 const OptimizeJsPlugin = require("optimize-js-plugin");
 const LodashModuleReplacementPlugin = require("lodash-webpack-plugin");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
@@ -14,22 +14,15 @@ module.exports = merge(common, {
 	plugins: [
 		new webpack.HashedModuleIdsPlugin(),
 		// Setup for Service Worker
-		new SWPrecacheWebpackPlugin({
-			cacheId: "hiperf",
-			filename: "sw.js",
+		new WorkboxPlugin({
+			cacheName: "hiperf",
+			globPatterns: ["**/*.{html,js,svg,png,woff2}"],
+			directoryIndex: "index.html",
+			navigateFallback: "index.html",
+			swDest: path.join("dist", "sw.js"),
 			dontCacheBustUrlsMatching: /\.\w{8}\./,
-			navigateFallback: PUBLIC_PATH + "index.html",
-			maximumFileSizeToCacheInBytes: 8388608,
-			minify: true,
-			stripPrefix: "src/",
-			staticFileGlobs: "src/assets/**/*.{svg,png,woff,woff2}",
-			runtimeCaching: [
-				{
-					handler: "cacheFirst",
-					urlPattern: /[.]{mp3,mp4}$/
-				}
-			],
-			mergeStaticsConfig: true
+			skipWaiting: true,
+			clientsClaim: true
 		}),
 		new webpack.DefinePlugin({
 			"process.env": {
@@ -38,7 +31,7 @@ module.exports = merge(common, {
 		}),
 		new webpack.optimize.ModuleConcatenationPlugin(),
 		new webpack.optimize.CommonsChunkPlugin({
-			names: ["react", "common"],
+			names: ["common"],
 			minChunks: Infinity
 			/*
 			name: "vendor",
