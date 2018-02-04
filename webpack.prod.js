@@ -8,15 +8,13 @@ const LodashModuleReplacementPlugin = require("lodash-webpack-plugin");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 const BrotliGzipPlugin = require("brotli-gzip-webpack-plugin");
 
-const PUBLIC_PATH = "";
-
 module.exports = merge(common, {
 	plugins: [
 		new webpack.HashedModuleIdsPlugin(),
 		// Setup for Service Worker
 		new WorkboxPlugin({
 			cacheName: "hiperf",
-			globPatterns: ["**/*.{html,js,svg,png,woff2}"],
+			globPatterns: ["**/*.{html,js,svg,jpg,jpeg,woff2}"],
 			directoryIndex: "index.html",
 			navigateFallback: "index.html",
 			swDest: path.join("dist", "sw.js"),
@@ -24,6 +22,7 @@ module.exports = merge(common, {
 			skipWaiting: true,
 			clientsClaim: true
 		}),
+		// Turn on Node production mode
 		new webpack.DefinePlugin({
 			"process.env": {
 				NODE_ENV: JSON.stringify("production")
@@ -33,12 +32,6 @@ module.exports = merge(common, {
 		new webpack.optimize.CommonsChunkPlugin({
 			names: ["common"],
 			minChunks: Infinity
-			/*
-			name: "vendor",
-			minChunks: function(module) {
-				return module.context && module.context.includes("node_modules");
-			}
-			*/
 		}),
 		// Create a single manifest for Webpack and its built file rather than duplicating it across all files
 		new webpack.optimize.CommonsChunkPlugin({
@@ -90,7 +83,9 @@ module.exports = merge(common, {
 			test: /\.(js|css|html|svg)$/,
 			threshold: 10240,
 			minRatio: 0.8
-		})
+		}),
+		// Uncomment to analyze your production bundles.
+		// Note: It will pause the process, so have it turned off when you create stuff. Turn it on when you need to inspect what gets put into the bundles.
 		//new BundleAnalyzerPlugin()
 	],
 	performance: {

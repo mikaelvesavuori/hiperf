@@ -4,7 +4,6 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ScriptExtHtmlWebpackPlugin = require("script-ext-html-webpack-plugin");
-const AutoDllPlugin = require("autodll-webpack-plugin");
 
 const srcDir = path.resolve(__dirname, "src");
 const distDir = path.resolve(__dirname, "dist");
@@ -14,12 +13,13 @@ module.exports = {
 	context: srcDir,
 	entry: [
 		// Examples of what might make sense to split into bundles
-		//framework: ["react", "react-router-dom", "react-loadable", "preact-compat"],
-		//common: ["styled-components", "marked"],
+		/*
+		framework: ["react", "react-router-dom", "react-loadable", "preact-compat"],
+		common: ["styled-components", "marked"],
+		*/
 
 		// Your main entry point, usually a .js or .jsx file
-		//app: ["./index-example.html"],
-		//styles: "./assets/styles/main.scss"
+		// Since we've not provided a name like above, it will be called main.[chunkhash].js
 		"./main.js"
 	],
 	output: {
@@ -42,18 +42,6 @@ module.exports = {
 	},
 	module: {
 		rules: [
-			/*
-			{
-				enforce: "pre",
-				test: /\.(js|jsx)$/,
-				loader: "eslint-loader",
-				options: {
-					fix: true,
-					emitWarning: true
-				},
-				exclude: /node_modules/
-			},
-			*/
 			{
 				test: /\.(js|jsx)$/,
 				use: [
@@ -68,6 +56,7 @@ module.exports = {
 				],
 				exclude: /node_modules/
 			},
+			// Accept only modern fonts
 			{
 				test: /\.(woff|woff2)$/,
 				loader: "url-loader",
@@ -76,6 +65,7 @@ module.exports = {
 					name: "./assets/fonts/[name].[ext]"
 				}
 			},
+			// Accept a range of image type
 			{
 				test: /\.(jpeg|jpg|png|svg|gif)$/,
 				loader: "url-loader", // Use file-loader if you want to deal with the images; url-loader is because we later copy all images and then optimize them through a separate imageoptim pass
@@ -83,6 +73,7 @@ module.exports = {
 					limit: 0, // Make sure we don't inline any of the content, but rather copy files instead
 				}
 			},
+			// Accept CSS and Sass
 			{
 				test: /\.(sass|scss|css)$/,
 				loader: ExtractTextPlugin.extract({
@@ -99,6 +90,7 @@ module.exports = {
 				}),
 				exclude: /node_modules/
 			},
+			// Accept HTML
 			{
 				test: /\.html$/,
 				loader: "raw-loader",
@@ -116,41 +108,24 @@ module.exports = {
 			allChunks: true
 		}),
 		new HtmlWebpackPlugin({
-			template: path.join(srcDir, "index.html"),
+			template: path.join(srcDir, "index-example.html"),
 			inject: true,
 			path: distDir,
 			filename: "index.html",
-			//excludeChunks: ["base"],
 			minify: {
 				collapseWhitespace: true,
-				collapseInlineTagWhitespace: true,
+				collapseInlineTagWhitespace: false,
 				removeComments: true,
 				removeRedundantAttributes: true
 			}
 		}),
-		/*
 		new ScriptExtHtmlWebpackPlugin({
 			defaultAttribute: "defer"
 		}),
-		*/
-		/*
-		new AutoDllPlugin({
-			inject: true,
-			debug: true,
-			filename: "[name]_[hash].js",
-			path: "./dll",
-			//filename: "[name].js",
-			entry: {
-				vendor: [
-					"path"
-				]
-			}
-		})
-		*/
 	],
 	performance: {
-		maxEntrypointSize: 250000,
-		maxAssetSize: 250000,
+		maxEntrypointSize: 300000,
+		maxAssetSize: 300000,
 		hints: "warning"
 	}
 };

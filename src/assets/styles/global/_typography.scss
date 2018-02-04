@@ -1,0 +1,31 @@
+body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+p {
+	font-family: "LibreFranklin-Regular";
+	max-width: 600px;
+	margin: 0 auto;
+}
+
+h1 {
+	font-size: 3em;
+	/* Don't use leading zeroes */
+	padding-bottom: .25em;
+}
+
+p {
+	font-size: 1em;
+	/* Always use valueless line-height */
+	line-height: 1.4;
+}
+
+code {
+	/* Prefer RGBA colors to HEX */
+	color: rgba(20, 20, 20, 1);
+	background-color: rgba(50, 50, 255, 0.1);
+	padding: 0 .3em;
+}

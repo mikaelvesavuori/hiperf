@@ -1,0 +1,17 @@
+/* Vanity styles for example content */
+
+html * {
+	box-sizing: border-box;
+}
+
+body {
+	/* Set 1em to be equivalent to 16px */
+	font-size: 16px;
+	margin-top: 2em;
+}
+
+@media screen and (max-width: 568px) {
+	body {
+		margin: 1em;
+	}
+}

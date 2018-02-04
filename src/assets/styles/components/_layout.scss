@@ -1,0 +1,21 @@
+section {
+	padding-bottom: 2em;
+}
+
+.container-fullbleed {
+	width: 100%;
+	padding: 3em;
+
+	object {
+		padding: 1em;
+	}
+}
+
+.container-flex {
+	display: flex;
+}
+
+.item--flex {
+	flex: 0 1 auto;
+	flex-direction: row;
+}

@@ -15,6 +15,6 @@ module.exports = merge(common, {
 	devtool: "cheap-module-source-map",
 	plugins: [
 		new webpack.NamedModulesPlugin(),
-		//new BundleAnalyzerPlugin()
+		new BundleAnalyzerPlugin()
 	]
 });

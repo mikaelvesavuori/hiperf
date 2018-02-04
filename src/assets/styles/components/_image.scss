@@ -1,0 +1,32 @@
+img {
+	width: 100%;
+	max-width: 900px;
+	display: block;
+	margin: 0 auto;
+	margin-bottom: 1em;
+}
+
+.image {
+	width: 100%;
+	padding: 2em;
+}
+
+.image-caption {
+	font-size: .8em;
+	text-align: center;
+}
+
+.lazyload,
+.lazyloading {
+	opacity: 0;
+	transform: translateX(-100%);
+}
+
+.lazyloaded {
+	opacity: 1;
+	/* Never transition more properties than necessary */
+	transition: transform .5s ease-out;
+	/* Use GPU acceleration for transforms */
+	transform: translateX(0);
+	will-change: transform;
+}
