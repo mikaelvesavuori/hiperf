@@ -2,12 +2,7 @@
 	"plugins": [
 		[
 			"lodash",
-			"syntax-dynamic-import",
-			"babel-plugin-styled-components",
-			{
-				"displayName": true,
-				"preprocess": true
-			}
+			"syntax-dynamic-import"
 		]
 	],
 	"presets": [
@@ -15,11 +10,19 @@
 			"env",
 			{
 				"targets": {
-					"chrome": 50,
 					"browsers": [
+						"Chrome >= 60",
+						"Safari >= 10.1",
+						"iOS >= 10.3",
+						"Firefox >= 54",
+						"Edge >= 15"
+						/*
+						Legacy support:
+
 						"last 2 versions",
 						"> 5%",
 						"ie 11"
+						*/
 					]
 				},
 				"modules": false,
