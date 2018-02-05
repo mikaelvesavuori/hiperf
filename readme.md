@@ -7,13 +7,10 @@ Hiperf is a high performance web development architecture based on Webpack – j
 ## Status
 Readme.md being updated and should be finished around Wednesday 7th February. There's still stuff I want to fix, like SVGs behaving really weird. Also, a lot of the commands are sort of Mac-specific. I need to update those to plugins or something else. So, if you're on Windows, expect to hack at the `package.json` for a bit.
 
-## Why would you want to use this?
-You need some very basic tooling for a current-generation web development project. You may, or may not, be sure if you need all the bells and whistles but you'd much rather have a setup that is easily extensible and does the basics (build a distribution package, bundle JS, transpile ES2015 into ES5) than starting from zero. You also get the performant index.html from [Minimally](https://github.com/mikaelvesavuori/minimally) and Service Worker pre-caching as a cherry on top.
-
 ## Features
 - **Performant**: High-performance Webpack 3 boilerplate with dev and production targets
 - **PWA and offline support**: Your site will behave like an app and be available offline
-- **High quality code**: ESLint, Stylelint and stylefmt are in place to safeguard your code quality.
+- **High quality code**: Prettier and ESLint is in place to safeguard your code quality.
 - **Test ready**: Run performance tests with Lighthouse, Sonarwhal, and Sitespeed.io
 - **Secure**: .htaccess and Netlify headers with tight Content Security Policy and hotlink protection (among lots of other things)
 - **Hooks**: Precommit and push hooks with Husky
@@ -26,6 +23,8 @@ You need some very basic tooling for a current-generation web development projec
 ## Commands
 - `yarn run dev` to do development and see bundle analysis
 - `yarn build` to do a static build to the `dist` folder
+
+Running the example project will create some "trash" files (unnecessary HTML and JS) that are not optimal in a production scenario. See the example project just as that, an example!
 
 ## Configs
 You will find a number of preset configuration files:
