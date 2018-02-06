@@ -5,5 +5,6 @@
   Access-Control-Allow-Origin: *
   X-UA-Compatible: IE=edge
   Cache-Control: max-age=2592000, must-revalidate, public
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
   Vary: Accept-Encoding
   Referrer-Policy: no-referrer

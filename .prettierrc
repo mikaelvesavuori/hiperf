@@ -2,15 +2,6 @@
 	"useTabs": true,
 	"printWidth": 80,
 	"tabWidth": 4,
-	"eslintIntegration": true,
 	"singleQuote": false,
-	"trailingComma": "none",
-	"jsxBracketSameLine": false,
-	"parser": "babylon",
-	"overrides": [
-		{
-			"files": ".prettierrc",
-			"options": { "parser": "json" }
-		}
-	]
+	"trailingComma": "none"
 }
