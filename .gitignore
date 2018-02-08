@@ -1,5 +1,8 @@
 dist/
 node_modules/
 .DS_Store
-cdp.pid
+*.pid
 yarn-error.log
+dist
+sitespeed-result
+www.*.html
