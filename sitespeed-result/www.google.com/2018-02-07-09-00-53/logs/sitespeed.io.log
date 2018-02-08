@@ -1,8 +1,0 @@
-[2018-02-07 09:00:53] INFO: [sitespeedio] Versions OS: darwin 17.4.0 nodejs: v9.3.0 sitespeed.io: 6.3.2 browsertime: 2.1.4 coach: 1.2.0
-[2018-02-07 09:00:53] INFO: [sitespeedio.plugin.browsertime] Starting chrome for analysing https://www.google.com 3 time(s)
-[2018-02-07 09:00:53] INFO: [root] Testing url https://www.google.com run 1
-[2018-02-07 09:00:58] INFO: [root] Testing url https://www.google.com run 2
-[2018-02-07 09:01:03] INFO: [root] Testing url https://www.google.com run 3
-[2018-02-07 09:01:09] INFO: [root] 17 requests, 578.05 kb, backEndTime: 399ms (±3.70ms), firstPaint: 606ms (±3.64ms), DOMContentLoaded: 628ms (±10.59ms), Load: 1.56s (±169.77ms), rumSpeedIndex: 607 (±3.74) (3 runs)
-[2018-02-07 09:01:11] INFO: [sitespeedio.plugin.html] HTML stored in /Users/mikaelvesavuori/Webb/hiperf/sitespeed-result/www.google.com/2018-02-07-09-00-53
-[2018-02-07 09:01:11] INFO: [sitespeedio] Finished analysing https://www.google.com
