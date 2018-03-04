@@ -1,4 +1,5 @@
 import "./assets/styles/main.scss";
+import "./assets/images/testimage.jpg";
 import "./assets/graphics/chrome.svg";
 import "./assets/graphics/edge.svg";
 import "./assets/graphics/firefox.svg";
