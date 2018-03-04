@@ -1,7 +1,7 @@
 {
 	"name": "hiperf",
 	"description": "High-performance web development architecture",
-	"version": "0.0.23",
+	"version": "0.0.24",
 	"main": "index.js",
 	"author": "Mikael Vesavuori",
 	"license": "MIT",
@@ -74,14 +74,11 @@
 		"clean": "rm -rf dist && mkdir dist",
 		"copy": "cp -R src/assets dist/ && cp src/* dist/",
 		"prebuild": "yarn clean",
-		"build":
-			"webpack --config webpack.prod.js --mode production --display-error-details && yarn run optimize:images && yarn run optimize:graphics",
+		"build": "webpack --config webpack.prod.js --mode production --display-error-details && yarn run optimize:images && yarn run optimize:graphics",
 		"optimize:images": "imageOptim -d $npm_package_config_imgdist",
-		"optimize:graphics":
-			"svgo -f $npm_package_config_gfxsrc -p 0.5 --multipass --enable=removeDimensions -o $npm_package_config_gfxdist",
+		"optimize:graphics": "svgo -f $npm_package_config_gfxsrc -p 0.5 --multipass --enable=removeDimensions -o $npm_package_config_gfxdist",
 		"test": "size-limit",
-		"test:url":
-			"npx lighthouse --view $npm_package_config_siteurl && npx sitespeed.io $npm_package_config_siteurl && npx sonarwhal $npm_package_config_siteurl",
+		"test:url": "npx lighthouse --view $npm_package_config_siteurl && npx sitespeed.io $npm_package_config_siteurl && npx sonarwhal $npm_package_config_siteurl",
 		"precommit": "yarn test",
 		"prepush": "npm version patch"
 	},
