@@ -5,7 +5,8 @@ const path = require("path");
 const WorkboxPlugin = require("workbox-webpack-plugin");
 const OptimizeJsPlugin = require("optimize-js-plugin");
 const LodashModuleReplacementPlugin = require("lodash-webpack-plugin");
-const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
+	.BundleAnalyzerPlugin;
 const BrotliGzipPlugin = require("brotli-gzip-webpack-plugin");
 
 module.exports = merge(common, {
@@ -29,15 +30,20 @@ module.exports = merge(common, {
 			}
 		}),
 		new webpack.optimize.ModuleConcatenationPlugin(),
+		// Removed in Webpack 4
+		/*
 		new webpack.optimize.CommonsChunkPlugin({
 			names: ["common"],
 			minChunks: Infinity
 		}),
+		*/
 		// Create a single manifest for Webpack and its built file rather than duplicating it across all files
+		/*
 		new webpack.optimize.CommonsChunkPlugin({
 			name: "manifest",
 			minChunks: Infinity
 		}),
+		*/
 		new OptimizeJsPlugin({
 			sourceMap: false
 		}),
@@ -47,27 +53,6 @@ module.exports = merge(common, {
 			collections: true,
 			paths: true,
 			shorthands: true
-		}),
-		new webpack.optimize.UglifyJsPlugin({
-			mangle: {
-				keep_fnames: true,
-				screw_ie8: true
-			},
-			compress: {
-				screw_ie8: true,
-				warnings: false,
-				conditionals: true,
-				unused: true,
-				comparisons: true,
-				sequences: true,
-				dead_code: true,
-				evaluate: true,
-				if_return: true,
-				join_vars: true
-			},
-			output: {
-				comments: false
-			}
 		}),
 		// Create precompressed assets for the server
 		new BrotliGzipPlugin({
@@ -83,7 +68,7 @@ module.exports = merge(common, {
 			test: /\.(js|css|html|svg)$/,
 			threshold: 10240,
 			minRatio: 0.8
-		}),
+		})
 		// Uncomment to analyze your production bundles.
 		// Note: It will pause the process, so have it turned off when you create stuff. Turn it on when you need to inspect what gets put into the bundles.
 		//new BundleAnalyzerPlugin()

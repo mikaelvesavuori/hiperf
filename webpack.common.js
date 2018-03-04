@@ -1,8 +1,8 @@
 const webpack = require("webpack");
 const path = require("path");
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const ScriptExtHtmlWebpackPlugin = require("script-ext-html-webpack-plugin");
 
 const srcDir = path.resolve(__dirname, "src");
@@ -28,8 +28,11 @@ module.exports = {
 		publicPath: "/"
 	},
 	resolve: {
-		modules: [path.resolve(__dirname, "node_modules"), path.resolve(__dirname, "src")],
-		extensions: [".js", ".jsx", ".html", ".scss", ".sass", ".css"],
+		modules: [
+			path.resolve(__dirname, "node_modules"),
+			path.resolve(__dirname, "src")
+		],
+		extensions: [".js", ".jsx", ".html", ".scss", ".sass", ".css"]
 		/*
 		In case you are using React, alias React with Preact to minimize footprint
 		There way be similar ways to handle this scenario with other frameworks
@@ -50,7 +53,7 @@ module.exports = {
 						options: {
 							plugins: [
 								"lodash" // So we can trim down any Lodash weight later on (from dependencies that are highly likely to use it)
-							],
+							]
 						}
 					}
 				],
@@ -68,21 +71,23 @@ module.exports = {
 			// Accept a range of image type
 			{
 				test: /\.(jpeg|jpg|png|svg|gif)$/,
-				loader: "url-loader", // Use file-loader if you want to deal with the images; url-loader is because we later copy all images and then optimize them through a separate imageoptim pass
+				loader: "file-loader",
 				options: {
-					limit: 0, // Make sure we don't inline any of the content, but rather copy files instead
+					useRelativePath: true,
+					name: "[name].[ext]"
 				}
 			},
 			// Accept CSS and Sass
 			{
 				test: /\.(sass|scss|css)$/,
-				loader: ExtractTextPlugin.extract({
+				use: ExtractTextPlugin.extract({
 					fallback: "style-loader",
 					use: [
 						{
 							loader: "css-loader",
 							options: {
-								importLoaders: 1
+								importLoaders: 1,
+								minimize: true
 							}
 						},
 						"postcss-loader"
@@ -99,14 +104,7 @@ module.exports = {
 		]
 	},
 	plugins: [
-		new CopyWebpackPlugin([{
-			from: path.resolve(__dirname, "src/assets/images/"),
-			to: path.resolve(__dirname, "dist/assets/images/")
-		}]),
-		new ExtractTextPlugin({
-			filename: "assets/styles/[name].css",
-			allChunks: true
-		}),
+		new ExtractTextPlugin("assets/styles/[name].css"),
 		new HtmlWebpackPlugin({
 			template: path.join(srcDir, "index-example.html"),
 			inject: true,
@@ -118,10 +116,12 @@ module.exports = {
 				removeComments: true,
 				removeRedundantAttributes: true
 			}
-		}),
+		})
+		/*
 		new ScriptExtHtmlWebpackPlugin({
 			defaultAttribute: "defer"
-		}),
+		})
+		*/
 	],
 	performance: {
 		maxEntrypointSize: 300000,
