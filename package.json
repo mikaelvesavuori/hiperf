@@ -1,7 +1,7 @@
 {
 	"name": "hiperf",
 	"description": "High-performance web development architecture",
-	"version": "0.0.21",
+	"version": "0.0.22",
 	"main": "index.js",
 	"author": "Mikael Vesavuori",
 	"license": "MIT",
