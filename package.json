@@ -54,7 +54,7 @@
 		"uglify-js": "^3.3.12",
 		"url-loader": "^1.0.1",
 		"webpack": "latest",
-		"webpack-bundle-analyzer": "^2.10.0",
+		"webpack-bundle-analyzer": "^3.3.2",
 		"webpack-cli": "latest",
 		"webpack-merge": "^4.1.2",
 		"workbox-webpack-plugin": "^2.1.3"
