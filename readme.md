@@ -1,4 +1,6 @@
 # Hiperf
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmikaelvesavuori%2Fhiperf.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmikaelvesavuori%2Fhiperf?ref=badge_shield)
+
 
 Hiperf is a high performance web development architecture based on Webpack – just apply your framework.
 
@@ -64,3 +66,7 @@ Hiperf and any kind of similar boilerplate/architecture would never be possible 
 * [Browserslist]()
 * [Sonarwhal]()
 * [Babel]()
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmikaelvesavuori%2Fhiperf.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmikaelvesavuori%2Fhiperf?ref=badge_large)
